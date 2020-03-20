@@ -1,112 +1,49 @@
 @import "./css/common";
 
-.logo {
-    .bgCover;
-    width: 2rem;
-    height: 2rem;
-    background-image: url("./assets/logo_white.png");
-}
 
-.rootView {
-    background: rgba(255, 255, 255, 1);
-}
-
-.navBar {
-    background-color: #111725;
-}
-
-.companyName {
+//=====
+.root {
+    background-color: #364160;
+    width: 100%;
+    height: 100%;
     color: white;
-    margin-left: 0.4rem;
-}
-
-.brandLayout {
-    .flexRow;
+    .flexCol;
     align-items: center;
 }
 
-.toggleBtn {
-    background-color: white;
+.menuItem {
+    color: white;
 }
 
-.navBarRight {
+.summary {
+    width: 90%;
+    margin-top: 1rem;
 }
 
-.navBarBrand {
+.summaryItem {
+    background-color: #455774;
+    border-radius: 1rem;
+    .flexCenter;
+    font-size: 2rem;
+    font-weight: bold;
+    .flexCol;
+    justify-content: center;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
 }
 
-.navMenu {
-    font-size: 15px;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 1);
-    line-height: 12px;
+.summaryItemTitle {
+    font-size: 1.1rem;
+    color: #DFDFEE;
+    letter-spacing: 0.08rem;
 }
 
-.navCollapse {
-
-}
-
-@media (min-width: 768px) {
-    .navCollapse {
-        .flexRow;
-        justify-content: flex-end;
-        padding-right: 2rem;
-    }
-}
-
-section {
-    width: 100%;
-}
-
-.contentService {
-    .sectionPaddingTop;
-}
-
-.home {
-    display: flex;
-    
-}
-.navBarEmptyMargin {
-    //background-color:yellow;
-    width: 40rem;
-    height: 100%;
-    flex: 1;
-}
-
-.solutionSectionRoot {
-    width: 100%;
-    .contentService;
-}
-
-.contactFormSectionRoot {
-    width: 100%;
-    .contentService;
-    background-color: rgba(244, 246, 249, 1);
-}
-
-@media (min-width: 768px) {
-    .contactFormSectionRoot {
-        width: 100%;
-        .contentService;
-        background-color: rgba(244,246,249,1);
-        margin-top: 1rem;
-    }
-}
-
-.footerSectionRoot {
-    width: 100%;
-    .contentService;
-    background-color: rgba(244,246,249,1);
-    padding-top: 2rem;
-}
-
-@media (min-width: 768px) {
-    .solutionSectionRoot {
-        .bgCover;
-        background-image: url("./assets/solution_section_bg.png");
-        width: 100%;
-        .contentService;
-    }
+.summaryItemValue {
 
 }
 
+.dataTable {
+    width: 90%;
+    margin-top: 1rem;
+}

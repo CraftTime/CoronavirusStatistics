@@ -70,7 +70,6 @@ export function request2(url, options, successCB, failedCB) {
 	}
 
 	newOptions.headers['access-token'] = localStorage.getItem(ACCESS_TOKEN);
-
 	if (newOptions.method === 'DELETE') {
 		const params = newOptions.params;
 		let paramsArray = [];
