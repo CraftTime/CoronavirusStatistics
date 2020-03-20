@@ -8,7 +8,9 @@ class HomeScene extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			statistics: {}
+			statistics: {
+				data: []
+			}
 		}
 
 	}
@@ -27,6 +29,22 @@ class HomeScene extends Component {
 
 	render() {
 		let {statistics} = this.state;
+		let valueRows = [];
+
+		for (let i in statistics.data) {
+			let data = statistics.data[i];
+			let row = (
+				<tr>
+					<td>{data["Province_State"]}</td>
+					<td>{data.Confirmed}</td>
+					<td>{data.Deaths}</td>
+					<td>{data.Active}</td>
+					<td>{data.Recovered}</td>
+				</tr>
+			);
+			valueRows.push(row);
+		}
+
 		return (
 			<div className={Style.root}>
 				{/* 导航栏*/}
@@ -106,23 +124,7 @@ class HomeScene extends Component {
 						</thead>
 
 						<tbody>
-						<tr>
-							<td>1</td>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Jacob</td>
-							<td>Thornton</td>
-							<td>@fat</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td colSpan="2">Larry the Bird</td>
-							<td>@twitter</td>
-						</tr>
+						{valueRows}
 						</tbody>
 					</Table>
 				</section>
