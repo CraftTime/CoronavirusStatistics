@@ -1,0 +1,123 @@
+
+
+//common
+@BaseLetterSpacing: 1px;
+
+//【首页】
+@menuMargin: 0.4rem;
+@baseMargin: 0.2rem;
+@marginBetweenTAI: 0.1rem;
+
+//三个资讯栏目顶端的分割栏的高度
+@barHeight: 0.19rem;
+@borderColor: #ecece1;
+@articleInfoColor: #a0a0a0;
+@articleTitleColor: #000;
+@commonMargin: 10px;
+@footerInfoColor: #72a6a6a6;
+@footMarginTop: 25px;
+@footerInfoSize: 9px;
+
+//login register
+@registerInputColor: #B5B5B6;
+@registerInputFontSize: 0.15rem;
+@otherSceneMargin: 0.7rem;
+
+//Calculate
+@CalcBaseMargin: 0.15rem;
+
+//Train
+@BaseTrainMarginTop: 4.3rem;
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+
+.baseTrainMarginTop {
+    margin-top: @BaseTrainMarginTop;
+}
+
+.singleLineEllipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.twoLineEllipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.threeLineEllipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.defEmptyInputBg {
+    outline: none;
+    border: none;
+}
+
+.flexRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.flexCol {
+    display: flex;
+    flex-direction: column;
+}
+
+.flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bgCover {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.registerInput:extend(.flexRow) {
+    outline: none;
+    border: 0;
+    color: @registerInputColor;
+    font-size: @registerInputFontSize;
+    padding-left: 0.1rem;
+    justify-content: flex-start;
+}
+
+.baseBackBtn {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.videoBtn {
+    background-image: none;//背景图片为空
+    border-radius: 15px;
+}
+
+.divider2 {
+    background-color: #F96A26;
+    width: 100%;
+    height: 0.04rem;
+    margin-top: 0.6rem;
+}
+
+.star {
+    width: 0.2rem;
+    height: 0.2rem;
+    margin-right: 0.02rem;
+}
+
+.sectionPaddingTop {
+    padding-top: 4rem;
+}

@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.cca1bcb0.chunk.css",
+    "main.js": "/static/js/main.f31992de.chunk.js",
+    "main.js.map": "/static/js/main.f31992de.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.dde7e306.js",
+    "runtime-main.js.map": "/static/js/runtime-main.dde7e306.js.map",
+    "static/css/2.1f00a269.chunk.css": "/static/css/2.1f00a269.chunk.css",
+    "static/js/2.eb67e3a3.chunk.js": "/static/js/2.eb67e3a3.chunk.js",
+    "static/js/2.eb67e3a3.chunk.js.map": "/static/js/2.eb67e3a3.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.577d9ecef4e1db007d578c9a6bfc29f1.js": "/precache-manifest.577d9ecef4e1db007d578c9a6bfc29f1.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.1f00a269.chunk.css.map": "/static/css/2.1f00a269.chunk.css.map",
+    "static/css/main.cca1bcb0.chunk.css.map": "/static/css/main.cca1bcb0.chunk.css.map",
+    "static/media/OneZeroBeat_Logo.png": "/static/media/OneZeroBeat_Logo.9aa62367.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.dde7e306.js",
+    "static/css/2.1f00a269.chunk.css",
+    "static/js/2.eb67e3a3.chunk.js",
+    "static/css/main.cca1bcb0.chunk.css",
+    "static/js/main.f31992de.chunk.js"
+  ]
+}
