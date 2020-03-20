@@ -1,14 +1,30 @@
 @import "./css/common";
 
+@ColorC: #6ADC9D;
+@ColorD: #F35367;
+@ColorA: #F8F352;
+@ColorR: #1b0adf;
 
 //=====
 .root {
     background-color: #364160;
     width: 100%;
-    height: 100%;
     color: white;
     .flexCol;
     align-items: center;
+}
+
+.dataC {
+    color: @ColorC;
+}
+.dataD {
+    color: @ColorD;
+}
+.dataA {
+    color: @ColorA;
+}
+.dataR {
+    color: @ColorR;
 }
 
 .menuItem {
@@ -34,9 +50,8 @@
 }
 
 .summaryItemTitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #DFDFEE;
-    letter-spacing: 0.08rem;
 }
 
 .summaryItemValue {
@@ -47,3 +62,25 @@
     width: 90%;
     margin-top: 1rem;
 }
+
+th {
+    color: #DFDFEE;
+    background-color: #455774;
+}
+
+@media (min-width: 768px) {
+    td, tr, td {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    td, tr, td {
+        font-size: 0.7rem;
+    }
+}
+
+td, th{
+    text-align: center;
+}
+

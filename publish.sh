@@ -2,4 +2,4 @@
 
 npm run build
 
-scp -r //Users/Bingo/Development/OneZeroBeat/Self/Website/OneZeroBeatWebsite/dist/* root@www.onezerobeat.com://opt/onezerobeat/OneZeroBeatWebSite
+scp -r //Users/Bingo/Development/OneZeroBeat/Product/CraftTime/Coronavirus/Proj/CoronavirusStatistics/dist/* root@www.onezerobeat.com://opt/crafttime/coronavirus

@@ -81,6 +81,8 @@ export function request2(url, options, successCB, failedCB) {
 			url += '&' + paramsArray.join('&');
 		}
 	}
+	// newOptions.credentials = 'include';
+	newOptions.mode = 'cors';
 	return fetch(url, newOptions)
 		.then(checkStatus)
 		.then((response) => {

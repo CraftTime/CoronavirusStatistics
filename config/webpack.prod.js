@@ -13,7 +13,7 @@ module.exports = merge(commonConfig, {
 	output: {
 		path: path.join(__dirname, '/../dist/'),
 		filename: 'js/[name].js',
-		"publicPath": "https://www.onezerobeat.com/",
+		"publicPath": "https://www.onezerobeat.com/coronavirus/",
 	},
 	optimization: {
 		minimize: true
