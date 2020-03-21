@@ -2,7 +2,7 @@ import * as Data from '../data/AppInfo';
 
 
 export function isSuccess(response) {
-	return response !== null && response !== undefined ? Data.API_STATUS_SUCCESS === parseInt(response.statusCode): false;
+	return response !== null && response !== undefined ? Data.API_STATUS_SUCCESS === parseInt(response["status_code"]): false;
 }
 
 export function isEmpty(val) {
