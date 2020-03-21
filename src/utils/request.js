@@ -69,7 +69,7 @@ export function request2(url, options, successCB, failedCB) {
 		newOptions.headers = {}
 	}
 
-	newOptions.headers['access-token'] = localStorage.getItem(ACCESS_TOKEN);
+	// newOptions.headers['access-token'] = localStorage.getItem(ACCESS_TOKEN);
 	if (newOptions.method === 'DELETE') {
 		const params = newOptions.params;
 		let paramsArray = [];
@@ -81,8 +81,6 @@ export function request2(url, options, successCB, failedCB) {
 			url += '&' + paramsArray.join('&');
 		}
 	}
-	// newOptions.credentials = 'include';
-	newOptions.mode = 'cors';
 	return fetch(url, newOptions)
 		.then(checkStatus)
 		.then((response) => {
