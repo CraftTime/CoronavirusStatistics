@@ -5,6 +5,8 @@ import COVIDMap from "./widget/echart/map";
 import {getData, getVisitorNumber} from './services/Coronavirus';
 import ClassNames from "classnames";
 import Switch from 'react-bootstrap-switch';
+import * as AppTitle from './data/AppTitle';
+import {isEmpty} from './utils/utils';
 
 
 const TOP_IMG_SIZE = {
@@ -16,7 +18,9 @@ const TOP_IMG_SIZE = {
 class HomeScene extends Component {
 	constructor(props) {
 		super(props);
+		let prevLanguage = localStorage.getItem("isZh");
 		this.state = {
+			isZh: isEmpty(prevLanguage) ? true : eval(prevLanguage.toLowerCase()),
 			statistics: {
 				"death": "",
 				"recovered": "",
@@ -51,7 +55,9 @@ class HomeScene extends Component {
 
 	render() {
 		let mapInfo=[];
-		let {statistics, visitorsNumber} = this.state;
+		let {statistics, visitorsNumber, isZh} = this.state;
+		let appTitles = isZh ? AppTitle.ZH : AppTitle.EN;
+		// alert(' isZh11: ' + isZh  + " value: " + isZh? '1' : '2');
 		let valueRows = [];
 		let clientWidth = document.documentElement.clientWidth;
 		let clientHeight = document.documentElement.clientHeight;
@@ -87,28 +93,44 @@ class HomeScene extends Component {
 			<div className={Style.root}>
 				<div className={Style.appIntroduction} style={topBgStyle}>
 					<div className={Style.logo}/>
-					<text className={Style.virus}>NOVEL CORONAVIRUS</text>
-					<text className={Style.virus_usa}>CORONAVIRUS USA</text>
+					<text className={Style.virus}>{appTitles.virus}</text>
+					<text className={Style.virus_usa}>{appTitles.virus_usa}</text>
 
 					<div className={Style.topLayoutBottom}>
 						<text className={Style.visitorNumber}>
-							Visitors In Total {visitorsNumber}
+							{appTitles.visitorNumber} {visitorsNumber}
 						</text>
-						<Switch/>
+
+						<div className={Style.switchLayout}
+							onClick={
+								()=> {
+									let isZh = !this.state.isZh;
+									localStorage.setItem("isZh", isZh + "");
+									this.setState({
+										isZh
+									});
+								}
+							}
+						>
+							<div className={Style.switchBtn}/>
+							{appTitles.switchBtn}
+						</div>
 					</div>
 
 
 				</div>
-				{/*	内容*/}
+				{/*	内容2*/}
 				<div id="home" className={Style.summary}>
-					<text className={Style.updateTime}>Data update to {statistics["updated_at"]}</text>
+					<text className={Style.updateTime}>
+						{isZh ? '截止至' + statistics["updated_at"] + '全美国数据统计' : 'Data update to ' + statistics["updated_at"]}
+					</text>
 					<center>
 						<div className={Style.summaryRoot}>
 							<Row>
 								<Col md={3} xs={6}>
 									<SummaryItem
 										valueStyle={Style.dataC}
-										title="Total Confirmed"
+										title={appTitles.totalConfirm}
 										value={statistics.confirmed}
 										icon={require('./assets/main_icon Confirmed@3x.png')}
 									/>
@@ -116,7 +138,7 @@ class HomeScene extends Component {
 								<Col md={3} xs={6}>
 									<SummaryItem
 										valueStyle={Style.dataD}
-										title="Total Death"
+										title={appTitles.totalDeath}
 										value={statistics.death}
 										icon={require('./assets/main_icon_Death@3x.png')}
 									/>
@@ -124,7 +146,7 @@ class HomeScene extends Component {
 								<Col md={3} xs={6}>
 									<SummaryItem
 										valueStyle={Style.dataA}
-										title="Total Active"
+										title={appTitles.totalActive}
 										value={statistics.active}
 										icon={require('./assets/main_icon_Active@3x.png')}
 									/>
@@ -132,7 +154,7 @@ class HomeScene extends Component {
 								<Col md={3} xs={6}>
 									<SummaryItem
 										valueStyle={Style.dataR}
-										title="Total Recovered"
+										title={appTitles.totalRecovered}
 										value={statistics.recovered}
 										icon={require('./assets/main_icon_Recovered@3x.png')}
 									/>
@@ -149,11 +171,11 @@ class HomeScene extends Component {
 					<div className={Style.dataRoot}>
 						{/*头部*/}
 						<div className={Style.th}>
-							<text className={ClassNames(Style.headerCell, Style.stateCell)}>State</text>
-							<text className={ClassNames(Style.headerCell, Style.confirmHeaderCell)}>Confirmed</text>
-							<text className={ClassNames(Style.headerCell)}>Death</text>
-							<text className={ClassNames(Style.headerCell)}>Active</text>
-							<text className={ClassNames(Style.headerCell)}>Recovered</text>
+							<text className={ClassNames(Style.headerCell, Style.stateCell)}>{appTitles.state}</text>
+							<text className={ClassNames(Style.headerCell, Style.confirmHeaderCell)}>{appTitles.confirmed}</text>
+							<text className={ClassNames(Style.headerCell)}>{appTitles.death}</text>
+							<text className={ClassNames(Style.headerCell)}>{appTitles.active}</text>
+							<text className={ClassNames(Style.headerCell)}>{appTitles.recovered}</text>
 						</div>
 
 						{/*数据体*/}
@@ -164,11 +186,11 @@ class HomeScene extends Component {
 				</section>
 
 				<section className={Style.declare}>
-					<text className={Style.declareTip}>*source by JHU</text>
+					<text className={Style.declareTip}>*{appTitles.sourceBy}</text>
 
-					<div className={Style.contact}>Please contact:
+					<div className={Style.contact}>{appTitles.contact}:
 						<a className={Style.contactMail}
-						   href="mailto:Li_xiang1991@hotmail.com?subject=关于疫情数据网站&body=关于疫情数据网站">
+						   href={"mailto:Li_xiang1991@hotmail.com?subject=" + appTitles.emailTitle + "&body=" + appTitles.emailValue}>
 							Li_xiang1991@hotmail.com
 						</a>
 					</div>
