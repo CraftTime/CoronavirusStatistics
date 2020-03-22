@@ -37,3 +37,10 @@ export async function getUSAMap(s, f) {
 		method: 'GET',
 	}, s, f);
 }
+
+export async function getVisitorNumber(s, f) {
+	let url = 'https://coronavirus.thecrafttime.com/api/visits';
+	return request2(url, {
+		method: 'GET',
+	}, s, f);
+}

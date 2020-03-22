@@ -1,9 +1,16 @@
 import React, {Component} from 'react';
 import Style from './HomeScene.less';
 import {Navbar, Nav, NavDropdown, Col, Row, Table} from 'react-bootstrap';
-import {getData} from './services/Coronavirus'
 import COVIDMap from "./widget/echart/map";
+import {getData, getVisitorNumber} from './services/Coronavirus';
 import ClassNames from "classnames";
+import Switch from 'react-bootstrap-switch';
+
+
+const TOP_IMG_SIZE = {
+	width: 375,
+	height: 170
+};
 
 
 class HomeScene extends Component {
@@ -16,7 +23,8 @@ class HomeScene extends Component {
 				"active": "",
 				"confirmed": "",
 				data: []
-			}
+			},
+			visitorsNumber: ""
 		}
 
 	}
@@ -28,24 +36,43 @@ class HomeScene extends Component {
 				statistics: resp
 			})
 		}, (error) => {
-			alert("failed: " + JSON.stringify(error));
-		})
+			alert(" getData failed: " + JSON.stringify(error));
+		});
+
+		getVisitorNumber((resp) => {
+			// alert("success: " + JSON.stringify(resp));
+			this.setState({
+				visitorsNumber: resp.visits
+			})
+		}, (error) => {
+			alert(" getVisitorNumber failed: " + JSON.stringify(error));
+		});
 	}
 
 	render() {
-		let {statistics} = this.state;
 		let mapInfo=[];
+		let {statistics, visitorsNumber} = this.state;
 		let valueRows = [];
+		let clientWidth = document.documentElement.clientWidth;
+		let clientHeight = document.documentElement.clientHeight;
+		let realHeight = TOP_IMG_SIZE.height / TOP_IMG_SIZE.width * clientWidth;
+		let topBgStyle = {
+			height: realHeight + 'px'
+		};
 
 		for (let i in statistics.data) {
 			let data = statistics.data[i];
 			let row = (
 				<div className={ClassNames(Style.th)}>
 					<text className={ClassNames(Style.dataCell, Style.stateTd, Style.stateCell)}>{data.state}</text>
-					<text className={ClassNames(Style.dataCell, Style.dateCellBgColor, Style.confirmDataCell)}>{data.confirmed}</text>
-					<text className={ClassNames(Style.dataCell, Style.dateCellBgColor, Style.deathDataCell)}>{data.deceased}</text>
-					<text className={ClassNames(Style.dataCell, Style.dateCellBgColor, Style.activeDataCell)}>{data.active}</text>
-					<text className={ClassNames(Style.dataCell, Style.dateCellBgColor, Style.recoveredDataCell)}>{data.recovered}</text>
+					<text
+						className={ClassNames(Style.dataCell, Style.dateCellBgColor, Style.confirmDataCell)}>{data.confirmed}</text>
+					<text
+						className={ClassNames(Style.dataCell, Style.dateCellBgColor, Style.deathDataCell)}>{data.deceased}</text>
+					<text
+						className={ClassNames(Style.dataCell, Style.dateCellBgColor, Style.activeDataCell)}>{data.active}</text>
+					<text
+						className={ClassNames(Style.dataCell, Style.dateCellBgColor, Style.recoveredDataCell)}>{data.recovered}</text>
 				</div>
 			);
 			valueRows.push(row);
@@ -58,11 +85,22 @@ class HomeScene extends Component {
 
 		return (
 			<div className={Style.root}>
-				<div className={Style.appIntroduction}>
-					ddd
+				<div className={Style.appIntroduction} style={topBgStyle}>
+					<div className={Style.logo}/>
+					<text className={Style.virus}>NOVEL CORONAVIRUS</text>
+					<text className={Style.virus_usa}>CORONAVIRUS USA</text>
+
+					<div className={Style.topLayoutBottom}>
+						<text className={Style.visitorNumber}>
+							Visitors In Total {visitorsNumber}
+						</text>
+						<Switch/>
+					</div>
+
+
 				</div>
 				{/*	内容*/}
-				<section id="home" className={Style.summary}>
+				<div id="home" className={Style.summary}>
 					<text className={Style.updateTime}>Data update to {statistics["updated_at"]}</text>
 					<center>
 						<div className={Style.summaryRoot}>
@@ -102,7 +140,7 @@ class HomeScene extends Component {
 							</Row>
 						</div>
 					</center>
-				</section>
+				</div>
 
 				<COVIDMap mapinfo={mapInfo}/>
 
@@ -125,6 +163,16 @@ class HomeScene extends Component {
 
 				</section>
 
+				<section className={Style.declare}>
+					<text className={Style.declareTip}>*source by JHU</text>
+
+					<div className={Style.contact}>Please contact:
+						<a className={Style.contactMail}
+						   href="mailto:Li_xiang1991@hotmail.com?subject=关于疫情数据网站&body=关于疫情数据网站">
+							Li_xiang1991@hotmail.com
+						</a>
+					</div>
+				</section>
 			</div>
 		)
 	}
