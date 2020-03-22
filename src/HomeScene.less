@@ -1,13 +1,12 @@
 @import "./css/common";
 
-@ColorC: #6ADC9D;
-@ColorD: #F35367;
-@ColorA: #F8F352;
-@ColorR: #1b0adf;
+@ColorC: rgb(255, 109, 91);
+@ColorD: rgb(77, 80, 84);
+@ColorA: rgb(255, 147, 0);
+@ColorR: rgb(16, 174, 181);
 
 //=====
 .root {
-    background-color: #364160;
     width: 100%;
     min-height: 100%;
     color: white;
@@ -18,12 +17,15 @@
 .dataC {
     color: @ColorC;
 }
+
 .dataD {
     color: @ColorD;
 }
+
 .dataA {
     color: @ColorA;
 }
+
 .dataR {
     color: @ColorR;
 }
@@ -32,41 +34,69 @@
     color: white;
 }
 
-.summary {
-    width: 90%;
+
+.updateTime {
+    color: rgb(153, 153, 153, 153);
+    font-size: 0.8rem;
     margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+.summary {
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 1px 7px 5px #F6F6F6;
+}
+
+.summaryRoot {
+    width: 80%;
+    margin-top: 1rem;
+
 }
 
 .summaryItem {
-    background-color: #455774;
     border-radius: 1rem;
     .flexCenter;
     font-size: 2rem;
     font-weight: bold;
-    .flexCol;
     justify-content: center;
     padding-top: 0.6rem;
     padding-bottom: 0.6rem;
     margin-bottom: 0.5rem;
+    .flexCol;
+}
+
+.summaryItemTop {
+    .flexRow;
+    align-items: center;
 }
 
 .summaryItemTitle {
     font-size: 1rem;
-    color: #DFDFEE;
-}
-
-.summaryItemValue {
-
+    color: rgb(102, 102, 102);
 }
 
 .dataTable {
-    width: 90%;
-    margin-top: 1rem;
+    width: 100%;
+    .flexCol;
+    align-items: center;
+    margin-top: 2rem;
 }
+
+.dataRoot {
+    width: 90%;
+    .flexCol
+}
+
+.th {
+    .flexRow;
+    width: 100%;
+}
+
 
 th {
     color: #DFDFEE;
-    background-color: #455774;
+    background: #F5F6F7;
 }
 
 @media (min-width: 768px) {
@@ -81,7 +111,75 @@ th {
     }
 }
 
-td, th{
+td, th {
     text-align: center;
 }
 
+.appIntroduction {
+    width: 100%;
+    background: url('./assets/app_introduction_bg.png') no-repeat;
+    .bgCover
+}
+
+.summaryItemIcon {
+    .bgCover;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.baseCell {
+    flex: 1;
+    margin-right: 0.15rem;
+    margin-bottom: 0.5rem;
+    .flexCenter;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    font-size: 0.6rem;
+}
+
+.headerCell {
+    .baseCell;
+    color: rgb(102, 102, 102);
+}
+
+.dataCell {
+    color: black;
+    .baseCell;
+
+}
+
+.dateCellBgColor {
+    background-color: rgb(245, 246, 247);
+}
+
+.stateTd {
+    border-top-left-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+    background-color: rgb(60, 145, 164);
+    color: white;
+}
+
+.confirmHeaderCell {
+    color: #FD918C;
+}
+
+.confirmDataCell {
+    color: @ColorC;
+}
+
+.deathDataCell {
+    color: @ColorD;
+}
+
+.activeDataCell {
+    color: @ColorA;
+}
+
+.recoveredDataCell {
+    color: @ColorR;
+}
+
+.stateCell {
+    flex: 1.5;
+}
