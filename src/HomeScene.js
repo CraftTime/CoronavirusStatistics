@@ -78,7 +78,7 @@ class HomeScene extends Component {
 					<text
 						className={ClassNames(Style.dataCell, Style.dateCellBgColor, Style.activeDataCell)}>{data.active}</text>
 					<text
-						className={ClassNames(Style.dataCell, Style.dateCellBgColor, Style.recoveredDataCell)}>{data.recovered}</text>
+						className={ClassNames(Style.dataCell, Style.dateCellBgColor, Style.recoveredDataCell, Style.tailTd)}>{data.recovered}</text>
 				</div>
 			);
 			valueRows.push(row);
