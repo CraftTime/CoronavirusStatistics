@@ -122,7 +122,6 @@ class HomeScene extends Component {
 	}
 }
 
-
 class SummaryItem extends React.Component {
 	constructor(props) {
 		super(props);
