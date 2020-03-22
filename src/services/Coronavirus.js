@@ -30,3 +30,10 @@ export async function getData(s, f) {
 		method: 'GET',
 	}, s, f);
 }
+
+export async function getUSAMap(s, f) {
+	let url = 'https://www.echartsjs.com/examples/data/asset/geo/USA.json';
+	return request2(url, {
+		method: 'GET',
+	}, s, f);
+}

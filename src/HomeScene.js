@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Style from './HomeScene.less';
 import {Navbar, Nav, NavDropdown, Col, Row, Table} from 'react-bootstrap';
 import {getData} from './services/Coronavirus'
-
+import COVIDMap from "./widget/echart/map";
 
 class HomeScene extends Component {
 	constructor(props) {
@@ -32,6 +32,7 @@ class HomeScene extends Component {
 
 	render() {
 		let {statistics} = this.state;
+		let mapInfo=[];
 		let valueRows = [];
 
 		for (let i in statistics.data) {
@@ -46,6 +47,11 @@ class HomeScene extends Component {
 				</tr>
 			);
 			valueRows.push(row);
+			let mapItem={
+				name:data.state,
+				value:Number.parseFloat(data.confirmed),
+			};
+			mapInfo.push(mapItem);
 		}
 
 		return (
@@ -64,7 +70,6 @@ class HomeScene extends Component {
 				</Navbar>
 
 				{/*	内容*/}
-
 				<section id="home" className={Style.summary}>
 					<center>
 						<Row>
@@ -111,6 +116,8 @@ class HomeScene extends Component {
 						</Row>
 					</center>
 				</section>
+
+				<COVIDMap mapinfo={mapInfo}/>
 
 				{/*	数据列表 */}
 				<section className={Style.dataTable}>
