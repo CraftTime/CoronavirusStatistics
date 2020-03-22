@@ -3,6 +3,9 @@ import Style from './HomeScene.less';
 import {Navbar, Nav, NavDropdown, Col, Row, Table} from 'react-bootstrap';
 import {getData} from './services/Coronavirus'
 import COVIDMap from "./widget/echart/map";
+import {getData} from './services/Coronavirus';
+import ClassNames from "classnames";
+
 
 class HomeScene extends Component {
 	constructor(props) {
@@ -38,13 +41,13 @@ class HomeScene extends Component {
 		for (let i in statistics.data) {
 			let data = statistics.data[i];
 			let row = (
-				<tr style={{backgroundColor: '#455774'}}>
-					<td>{data.state}</td>
-					<td className={Style.dataC}>{data.confirmed}</td>
-					<td className={Style.dataD}>{data.deceased}</td>
-					<td className={Style.dataA}>{data.active}</td>
-					<td className={Style.dataR}>{data.recovered}</td>
-				</tr>
+				<div className={ClassNames(Style.th)}>
+					<text className={ClassNames(Style.dataCell, Style.stateTd, Style.stateCell)}>{data.state}</text>
+					<text className={ClassNames(Style.dataCell, Style.dateCellBgColor, Style.confirmDataCell)}>{data.confirmed}</text>
+					<text className={ClassNames(Style.dataCell, Style.dateCellBgColor, Style.deathDataCell)}>{data.deceased}</text>
+					<text className={ClassNames(Style.dataCell, Style.dateCellBgColor, Style.activeDataCell)}>{data.active}</text>
+					<text className={ClassNames(Style.dataCell, Style.dateCellBgColor, Style.recoveredDataCell)}>{data.recovered}</text>
+				</div>
 			);
 			valueRows.push(row);
 			let mapItem={
@@ -56,64 +59,49 @@ class HomeScene extends Component {
 
 		return (
 			<div className={Style.root}>
-				{/* 导航栏*/}
-				<Navbar bg="dark" expand="lg" style={{width: '100%'}}>
-					<Navbar.Brand href="#home">
-						<text style={{color: 'white'}}>Coronavirus</text>
-					</Navbar.Brand>
-					<Navbar.Toggle aria-controls="basic-navbar-nav"/>
-					<Navbar.Collapse id="basic-navbar-nav">
-						<Nav className="mr-auto">
-							<Nav.Link href="#about" style={{color: 'white'}}>About The Crafttime</Nav.Link>
-						</Nav>
-					</Navbar.Collapse>
-				</Navbar>
-
+				<div className={Style.appIntroduction}>
+					ddd
+				</div>
 				{/*	内容*/}
 				<section id="home" className={Style.summary}>
+					<text className={Style.updateTime}>Data update to {statistics["updated_at"]}</text>
 					<center>
-						<Row>
-							<Col md={3} xs={6}>
-								<div className={Style.summaryItem}>
-									<text className={Style.dataC}>
-										{statistics.confirmed}
-									</text>
-									<text className={Style.summaryItemTitle}>
-										Total Confirmed
-									</text>
-								</div>
-							</Col>
-							<Col md={3} xs={6}>
-								<div className={Style.summaryItem}>
-									<text className={Style.dataD}>
-										{statistics.death}
-									</text>
-									<text className={Style.summaryItemTitle}>
-										Total Death
-									</text>
-								</div>
-							</Col>
-							<Col md={3} xs={6}>
-								<div className={Style.summaryItem}>
-									<text className={Style.dataA}>
-										{statistics.active}
-									</text>
-									<text className={Style.summaryItemTitle}>
-										Total Active
-									</text>
-								</div>
-							</Col>
-							<Col md={3} xs={6}>
-								<div className={Style.summaryItem}>
-									<text className={Style.dataR}>
-										{statistics.recovered}
-									</text>
-									<text className={Style.summaryItemTitle}>
-										Total Recovered
-									</text>
-								</div>
-							</Col>
-						</Row>
+						<div className={Style.summaryRoot}>
+							<Row>
+								<Col md={3} xs={6}>
+									<SummaryItem
+										valueStyle={Style.dataC}
+										title="Total Confirmed"
+										value={statistics.confirmed}
+										icon={require('./assets/main_icon Confirmed@3x.png')}
+									/>
+								</Col>
+								<Col md={3} xs={6}>
+									<SummaryItem
+										valueStyle={Style.dataD}
+										title="Total Death"
+										value={statistics.death}
+										icon={require('./assets/main_icon_Death@3x.png')}
+									/>
+								</Col>
+								<Col md={3} xs={6}>
+									<SummaryItem
+										valueStyle={Style.dataA}
+										title="Total Active"
+										value={statistics.active}
+										icon={require('./assets/main_icon_Active@3x.png')}
+									/>
+								</Col>
+								<Col md={3} xs={6}>
+									<SummaryItem
+										valueStyle={Style.dataR}
+										title="Total Recovered"
+										value={statistics.recovered}
+										icon={require('./assets/main_icon_Recovered@3x.png')}
+									/>
+								</Col>
+							</Row>
+						</div>
 					</center>
 				</section>
 
@@ -121,26 +109,58 @@ class HomeScene extends Component {
 
 				{/*	数据列表 */}
 				<section className={Style.dataTable}>
-					<Table striped hover size="sm" variant="dark">
-						<thead>
-						<tr>
-							<th>State</th>
-							<th>Confirmed</th>
-							<th>Death</th>
-							<th>Active</th>
-							<th>Recovered</th>
-						</tr>
-						</thead>
+					<div className={Style.dataRoot}>
+						{/*头部*/}
+						<div className={Style.th}>
+							<text className={ClassNames(Style.headerCell, Style.stateCell)}>State</text>
+							<text className={ClassNames(Style.headerCell, Style.confirmHeaderCell)}>Confirmed</text>
+							<text className={ClassNames(Style.headerCell)}>Death</text>
+							<text className={ClassNames(Style.headerCell)}>Active</text>
+							<text className={ClassNames(Style.headerCell)}>Recovered</text>
+						</div>
 
-						<tbody>
+						{/*数据体*/}
 						{valueRows}
-						</tbody>
-					</Table>
+
+					</div>
+
 				</section>
 
 			</div>
 		)
 	}
 }
+
+class SummaryItem extends React.Component {
+	constructor(props) {
+		super(props);
+
+	}
+
+	render() {
+		let iconBg = {
+			backgroundImage: `url(${this.props.icon})`
+		};
+
+		return (
+			<div className={Style.summaryItem}>
+				<div className={Style.summaryItemTop}>
+					<div
+						style={iconBg}
+						className={Style.summaryItemIcon}
+					/>
+					<text className={this.props.valueStyle}>
+						{this.props.value}
+					</text>
+				</div>
+
+				<text className={Style.summaryItemTitle}>
+					{this.props.title}
+				</text>
+			</div>
+		);
+	}
+}
+
 
 export default HomeScene;
