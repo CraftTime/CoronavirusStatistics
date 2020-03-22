@@ -3,7 +3,6 @@ import Style from './HomeScene.less';
 import {Navbar, Nav, NavDropdown, Col, Row, Table} from 'react-bootstrap';
 import {getData} from './services/Coronavirus'
 import COVIDMap from "./widget/echart/map";
-import {getData} from './services/Coronavirus';
 import ClassNames from "classnames";
 
 

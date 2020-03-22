@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import UsaEchart from 'echarts-for-react'
 import echarts from 'echarts/lib/echarts';
+import styles from './map.less'
+
 
 class COVIDMap extends Component {
     constructor(props) {
@@ -27,16 +29,18 @@ class COVIDMap extends Component {
     getOption() {
         return {
             title: {
+                show: false,
                 text: '美国疫情地图',
                 subtext: 'Provide by Craft Time INC',
-                left: 'center',
-                show:false,
-                textStyle:{
-                    color:"#fff",
-                    fontWeight:"bold",
+                textStyle: {
+                    color: "#666",
+                    fontWeight: "bold",
+                    fontSize: '14',
                 },
-                subtextStyle:{
-                    color:"#fff",
+                subtextStyle: {
+                    color: "#666",
+                    fontSize: '12',
+
                 }
             },
             // legend: {
@@ -66,25 +70,30 @@ class COVIDMap extends Component {
                 }
             },
             visualMap: {
-                align:'right',
-                type:'piecewise',
-                left: 'right',
+                type: 'piecewise',
+                align: 'right',
+                top: '2%',
+                right: 0,
+                left: 'center',
                 pieces: [
-                    {min:0,max: 0},
-                    {min: 1, max: 9},
-                    {min: 10, max: 99},
-                    {min: 100, max: 499},
+                    {min: 1000},
                     {min: 500, max: 999},
-                    {min: 1000, max: 10000},
-                    {min: 10000},
+                    {min: 100, max: 499},
+                    {min: 10, max: 99},
+                    {min: 1, max: 9}
                 ],
-                textStyle:{
-                    color:'#fff',
+                textStyle: {
+                    color: '#666',
+                    fontSize: 10,
                 },
                 inRange: {
                     color: ['#ffffff', '#faebd2', '#e9a189', '#d66456', '#bb3937', '#762526', '#470f10']
                 },
-                orient:'horizontal',
+                orient: 'horizontal',
+                showLabel: true,
+                padding: 5,
+                itemWidth: 10,
+                itemHeight: 10,
             },
             toolbox: {
                 show: false,
@@ -99,29 +108,44 @@ class COVIDMap extends Component {
             },
             series: [
                 {
+                    left: 'center',
                     name: 'USA Confirmed',
                     type: 'map',
                     roam: false,
                     map: 'USA',
+                    label: {
+                        show: false,
+                        position: 'inside',
+                        // margin: 8,
+                        fontSize: 6
+                    },
                     emphasis: {
                         label: {
                             show: false
                         },
                         itemStyle: {
-                            borderColor:"#fff",
-                            borderWidth:"1",
-                            areaColor:'#FCF402',
+                            borderColor: "#fff",
+                            borderWidth: "1",
+                            areaColor: '#FCF402',
                         },
                     },
                     itemStyle: {
-                        borderColor:"#939392",
-                        areaColor:'#fff',
+                        borderColor: "#939392",
+                        areaColor: '#fff',
                     },
                     // 文本位置修正
                     textFixed: {
                         Alaska: [20, -20]
                     },
+                    zoom:1.1,
                     data: this.props.mapinfo,
+                    showLegendSymbol: false,
+                    rippleEffect: {
+                        show: true,
+                        brushType: 'stroke',
+                        scale: 2.5,
+                        period: 4
+                    },
                 }
             ],
 
@@ -518,7 +542,10 @@ class COVIDMap extends Component {
 
     render() {
         return (
-                <UsaEchart option={this.getOption()} style={{width:'90%'}}></UsaEchart>
+            <div className={styles.map}>
+                <UsaEchart className={styles.mapbox} option={this.getOption()} echarts={echarts}
+                           style={{height: '400px'}}></UsaEchart>
+            </div>
         )
     }
 }
